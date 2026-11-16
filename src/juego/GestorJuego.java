@@ -26,6 +26,7 @@ public class GestorJuego {
             int defensa = sc.nextInt();
             System.out.print("Ingrese bonificacion de fuerza del personaje: ");
             int bonificacion = sc.nextInt();
+            sc.nextLine();
 
             Guerrero nuevoGuerrero = new Guerrero(ataque, defensa, nivel, nombreGuerrero, vida_maximal, vida_maximal, bonificacion);
 
@@ -54,6 +55,7 @@ public class GestorJuego {
             int defensa = sc.nextInt();
             System.out.print("Ingrese mana del personaje: ");
             int mana = sc.nextInt();
+            sc.nextLine();
 
             Mago nuevoMago = new Mago(ataque, defensa, nivel, nombreMago, vida_maximal, vida_maximal, mana);
 
@@ -82,6 +84,7 @@ public class GestorJuego {
             int defensa = sc.nextInt();
             System.out.print("Ingrese cantidad de flechas del personaje: ");
             int flechas = sc.nextInt();
+            sc.nextLine();
 
             Arquero nuevoArquero = new Arquero(ataque, defensa, nivel, nombreArquero, vida_maximal, vida_maximal, flechas);
 
@@ -112,6 +115,7 @@ public class GestorJuego {
             int bonificacion = sc.nextInt();
             System.out.print("Ingrese energia sagrada del personaje: ");
             int energia = sc.nextInt();
+            sc.nextLine();
 
             Paladin nuevoPaladin = new Paladin(ataque, defensa, nivel, nombrePaladín, vida_maximal, vida_maximal, bonificacion, energia);
 
@@ -186,9 +190,11 @@ public class GestorJuego {
                 arquero.dispararFlecha(enemigo);
             } else if (aliado instanceof Paladin) {
                 Paladin paladin = (Paladin) aliado;
+                paladin.atacar(enemigo, paladin.getFuerza());
                 System.out.println("Que habilidad desea usar?");
                 System.out.println("1. Activar escudo");
-                System.out.print("2. Curar aliado\nSleccione una opcion (1 o 2): ");
+                System.out.println("2. Curar aliado");
+                System.out.print("3. Cancelar\nSleccione una opcion: ");
                 int habilidad = sc.nextInt();
                 sc.nextLine();
 
@@ -203,23 +209,27 @@ public class GestorJuego {
                         if(registro.containsKey(aliadoCurar)){
                             Personaje aliadoDebil = registro.get(aliadoCurar);
                             paladin.curar(aliadoDebil);
+                            aliadoDebil.mostrarInfo();
                         }else {
                             System.out.println("Aliado no encontrado");
                         }
+                        return;
+                    }
+                    case 3:{
                         return;
                     }
                     default:{
                         System.out.println("[ERROR]: Habilidad no valida!");
                     }
                 }
-            } else {
+            } else if (aliado instanceof Guerrero){
                 Guerrero guerrero = (Guerrero) aliado;
-                guerrero.atacar(enemigo, 25);
+                guerrero.atacar(enemigo, guerrero.getFuerza());
             }
         } else if (aliado != null){
-            System.out.print("[ERROR]: No existe enemigo");
+            System.out.println("[ERROR]: No existe enemigo");
         } else {
-            System.out.print("[ERROR]: No existe aliado");
+            System.out.println("[ERROR]: No existe aliado");
         }
     }
 

@@ -14,7 +14,7 @@ public class Personaje {
 
     public void setNombre(String nombre) {
         if (nombre == null || nombre.trim().isEmpty()) {
-            System.out.println("[ERROR]: Nombre no valido!\nSe le asignara el nombre 'Aventurero'!");
+            System.out.println("[ERROR]: Nombre no valido!\nSe le asignara el nombre 'Aventurero'");
             this.nombre = "Aventurero";
         }
 
@@ -22,7 +22,7 @@ public class Personaje {
 
         if (nombreLimpio.length()<3 || nombreLimpio.length()>15) {
             System.out.println("[ERROR]: El nombre debe tener entre 3 y 15 caracteres!");
-            System.out.println("Se le asignara el nombre 'Aventurero'!00");
+            System.out.println("Se le asignara el nombre 'Aventurero'!");
             this.nombre = "Aventurero";
         } else {
             this.nombre = nombreLimpio;
@@ -150,7 +150,7 @@ public class Personaje {
             if (bonificacion < 0) {
                 bonificacion = 0;
             }
-            int danio = this.ataque + bonificacion;
+            int danio = (this.ataque + bonificacion);
             enemigo.recibirDanio(danio);
             System.out.println(nombre + " ataca a " + enemigo.getNombre() + " con un ataque especial de " + danio);
         } else {

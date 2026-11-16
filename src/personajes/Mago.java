@@ -11,6 +11,7 @@ public class Mago extends Personaje{
         if (mana >= 0) {
             this.mana = mana;
         } else {
+            System.out.println("[ERROR]: No se puede tener mana negativo\nSe asiganra un mana de 100!");
             this.mana = 100;
         }
     }
